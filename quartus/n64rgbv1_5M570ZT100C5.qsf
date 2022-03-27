@@ -41,7 +41,7 @@ set_global_assignment -name FAMILY "MAX V"
 set_global_assignment -name DEVICE 5M570ZT100C5
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 18.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "14:56:44  MARCH 05, 2019"
-set_global_assignment -name LAST_QUARTUS_VERSION "20.1.1 Lite Edition"
+set_global_assignment -name LAST_QUARTUS_VERSION "21.1.0 Lite Edition"
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name DEVICE_FILTER_PACKAGE TQFP
@@ -134,8 +134,8 @@ set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to en_IGR_DeBl_16b_Func
 ## =====
 set_global_assignment -name TOP_LEVEL_ENTITY n64rgbv1_top
 
-set_global_assignment -name VERILOG_INCLUDE_FILE ../vh/n64rgb_params.vh
-set_global_assignment -name VERILOG_INCLUDE_FILE ../vh/igr_params.vh
+set_global_assignment -name VERILOG_INCLUDE_FILE ../lib/n64rgb_params.vh
+set_global_assignment -name VERILOG_INCLUDE_FILE ../lib/igr_params.vh
 
 set_global_assignment -name VERILOG_FILE ../rtl/n64rgbv1_top.v
 set_global_assignment -name VERILOG_FILE ../rtl/n64rgb_hk.v
@@ -152,6 +152,7 @@ set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files/discontinued/v
 set_global_assignment -name SMART_RECOMPILE ON
 set_global_assignment -name RESERVE_ALL_UNUSED_PINS "AS INPUT TRI-STATED WITH BUS-HOLD"
 set_global_assignment -name OPTIMIZATION_MODE "HIGH PERFORMANCE EFFORT"
+set_global_assignment -name MAXII_OPTIMIZATION_TECHNIQUE SPEED
 
 
 ## Additions by Quartus Prime

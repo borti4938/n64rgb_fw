@@ -82,7 +82,7 @@ module n64rgbv1_top (
 );
 
 
-`include "../vh/n64rgb_params.vh"
+`include "../lib/n64rgb_params.vh"
 
 input                   VCLK;
 input                   nDSYNC;
