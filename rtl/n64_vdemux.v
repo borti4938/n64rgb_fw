@@ -2,7 +2,7 @@
 //
 // This file is part of the N64 RGB/YPbPr DAC project.
 //
-// Copyright (C) 2016-2018 by Peter Bartmann <borti4938@gmail.com>
+// Copyright (C) 2016-2022 by Peter Bartmann <borti4938@gmail.com>
 //
 // N64 RGB/YPbPr DAC is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -27,10 +27,6 @@
 // Target Devices: universial
 // Tool versions:  Altera Quartus Prime
 // Description:    demux the video data from the input data stream
-//
-// Dependencies: vh/n64rgb_params.vh
-//
-// Revision: 1.1
 //
 ///////////////////////////////////////////////////////////////////////////////////////////
 

@@ -2,7 +2,7 @@
 //
 // This file is part of the N64 RGB/YPbPr DAC project.
 //
-// Copyright (C) 2016-2018 by Peter Bartmann <borti4938@gmail.com>
+// Copyright (C) 2016-2022 by Peter Bartmann <borti4938@gmail.com>
 //
 // N64 RGB/YPbPr DAC is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -27,8 +27,6 @@
 // Project Name:   N64 RGB DAC Mod
 // Target Devices: several MaxII & MaxV devices
 // Tool versions:  Altera Quartus Prime
-//
-// Revision: 3.0
 //
 // Description:
 //
@@ -85,7 +83,7 @@ module n64rgbv2_top (
 );
 
 
-`include "../vh/n64rgb_params.vh"
+`include "../lib/n64rgb_params.vh"
 
 input                   VCLK;
 input                   nDSYNC;
@@ -115,7 +113,6 @@ output reg nCSYNC_ADV712x;
 output reg nBLANK_ADV712x;
 
 input [4:0] dummy_i;
-
 
 // start of rtl
 
