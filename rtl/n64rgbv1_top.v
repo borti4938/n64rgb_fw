@@ -114,8 +114,8 @@ output  THS7374_LPF_Bypass_o;       // so simply combine both for same firmware 
 
 wire DRV_RST, n16bit_mode_o, nDeBlur_o;
 wire nRST_int = nRST_io;
-wire [3:0] vinfo_pass;
-wire [`VDATA_FU_SLICE] vdata_r;
+wire palmode, n64_480i;
+wire [`VDATA_SY_SLICE] vdata_sy;
 
 
 // housekeeping
@@ -126,7 +126,7 @@ n64rgb_hk hk_u(
   .nRST(nRST_int),
   .DRV_RST(DRV_RST),
   .CTRL_i(CTRL_i),
-  .n64_480i(vinfo_pass[0]),
+  .n64_480i(n64_480i),
   .n16bit_mode_t(n16bit_mode_t),
   .nVIDeBlur_t(nVIDeBlur_t),
   .en_IGR_Rst_Func(en_IGR_Rst_Func),
@@ -141,10 +141,11 @@ n64rgb_hk hk_u(
 
 n64_vinfo_ext get_vinfo(
   .VCLK(VCLK),
+  .nRST(nRST_int),
   .nDSYNC(nDSYNC),
-  .Sync_pre(vdata_r[`VDATA_SY_SLICE]),
+  .Sync_pre(vdata_sy),
   .Sync_cur(D_i[3:0]),
-  .vinfo_o(vinfo_pass)
+  .vinfo_o({palmode,n64_480i})
 );
 
 
@@ -153,11 +154,12 @@ n64_vinfo_ext get_vinfo(
 
 n64_vdemux video_demux(
   .VCLK(VCLK),
+  .nRST(nRST_int),
   .nDSYNC(nDSYNC),
   .D_i(D_i),
-  .demuxparams_i({vinfo_pass[3:1],nDeBlur_o,n16bit_mode_o}),
-  .vdata_r_0(vdata_r),
-  .vdata_r_1({nVSYNC,nCLAMP,nHSYNC,nCSYNC,R_o,G_o,B_o})
+  .demuxparams_i({palmode,nDeBlur_o,n16bit_mode_o}),
+  .vdata_sy_0_o(vdata_sy),
+  .vdata_1_o({nVSYNC,nCLAMP,nHSYNC,nCSYNC,R_o,G_o,B_o})
 );
 
 
