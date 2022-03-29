@@ -32,13 +32,13 @@ N64RGB (version 2.1)
   - Some games use the LSBs just for inserting some kind of noise, so the 16bit gives you a clearer image.
 - IGR features:
   - reset the console with the controller
-  - quick change on VI-DeBlur and 16bit mode with the controller without accessing the menu
+  - quick change on VI-DeBlur and 16bit mode with the controller
 
 
 ### Controller Functions
 
 Three functionalities are implemented: toggle vi-deblur feature and toggle the 16bit mode as well as resetting the console.
-They are only availble if the installation allows you to use these functions.
+They are only available if the installation allows you to use these functions.
 They can be disabled via jumper setting on the modding PCB (see [Jumper Setup description in the PCB repository](https://github.com/borti4938/n64rgb_pcb#jumper-setup)).
 
 The button combination are as follows:
@@ -50,13 +50,13 @@ The button combination are as follows:
   - deactivate: Z + Start + R + C-up
   - activate: Z + Start + R + C-dw
 
-If you read here and there the abbriviation IGR, this may translates to either In-Game-Reset or In-Game-Routines.
+If you read here and there the abbreviation IGR, this may translate to either In-Game-Reset or In-Game-Routines.
 
 
 ### Default Configuration / Switchable Functions
 
 Defaults for VI-DeBlur and 16bit are determined via jumper settings on the N64RGBv2.1 mainboard.
-As these jumper are read continuously during runtime you can also toggle their state at runtime.
+As these jumpers are read continuously during runtime you can also toggle their state at runtime.
 This means a switch soldered to the jumpers allows the user to toggle VI-DeBlur and 16bit mode.
 Please see the [PCB repository](https://github.com/borti4938/n64rgb_pcb) for more details on how an installation configuration with switches works.
 
@@ -64,7 +64,7 @@ Please see the [PCB repository](https://github.com/borti4938/n64rgb_pcb) for mor
 
 #### Via JTAG
 
-In order to update, you need to have:
+To update the firmware via JTAG, you need to have:
 
 - an Altera USB Blaster (or clone) for flashing the firmware
 - _Quartus Prime Programmer_ software installed on your computer  
@@ -72,19 +72,17 @@ In order to update, you need to have:
 - If the programmer driver won't work on your Windows system, please use the following driver: [Link to Terasic.com Wiki](https://www.terasic.com.tw/wiki/Altera_USB_Blaster_Driver_Installation_Instructions).
 
 The update procedure is as follows:
-- Download the latest firmware from the [Github Repository](https://github.com/borti4938/n64rgb_fw)
+- Download the latest firmware from the [Github Repository](https://github.com/borti4938/n64rgb_fw/releases)
 - Start the _Quartus Prime Programmer_ software
 - Select the programmer adapter under _Hardware Setup..._ if not automatically selected
 - Add the programming file with _Add File..._  
   - Programming file ends with _\*.pof_.
-  - Programming file is named after the CPLD - either _n64rgbv2_1_\_**5M240ZT100**.pof_, _n64rgbv2_1_\_**5M57ZT100**.pof_, _n64rgbv2_1_\_**EPM240T100**.pof_ or _n64rgbv2_1_\_**EPM570T100**.pof_
+  - Programming file is named after PCB version and function set (see above)
 - Check _Program / Configure_ and _Verify_ for your CPLD devices **CFM** which should appear with the previous step.
 - Click on _Start_ and wait patiently  
 Please note that the **console must be turned on** in order to provide a reference target voltage for the programming device.
 
 ![](./doc/img/jtag_update.jpg)
-
-Please note that the older N64RGB modding boards, namely N64RGB and N64RGBv2, have programming files supplied in the [discontinued folder](quartus/output_files/discontinued)
 
 ## Developer Information
 
@@ -115,15 +113,13 @@ These are the software requirements:
 ### Build Firmware
 
 If not already done, clone the GIT source.
-Open the [project file](./quartus/n64rgbv2_1.qpf) with Quartus Prime Lite.
-Afterwards select the revision you like to work with; a quick switch is located in the middle of the control/symbol bar.
+Open the [project file](./quartus/n64rgb_v2_1.qpf) with Quartus Prime Lite.
+Afterwards select the revision you like to work with; a quick switch is in the middle of the control/symbol bar.
 The revision is named after the CPLD you'd like to use / build the firmware for.
 
 There is no need to build any IP-cores as they are not used.
 You can directly _Compile Design_ (e.g. using the shortcut Ctrl. + L).
 If everything went correct the design should compile just fine (Warnings are ok).
 
-### Outdated Versions
-
-If you want to develop with older PCB revisions, you must switch the repository branch to [discontinue](https://github.com/borti4938/n64rgb_fw/tree/discontinue).
-By doing so the project files for the N64RGB (n64rgbv1.qpf) and N64RGBv2 (n64rgbv2.qpf) should appear together with the revision setup files (\*.qsf).
+If you wish to develop with an older PCB version (N64RGBv2 or N64RGB), you have to change the branch to [discontinue](https://github.com/borti4938/n64rgb_fw/tree/discontinue).
+Project file for these PCBs will then show up.

@@ -1,0 +1,12 @@
+Changelog
+
+Last update: March 30th, 2022
+
+v1.01
+=====
+- simplified interlaced detection
+- add internal reset
+
+v1.00
+=====
+- initial commit as separate firmware repository
