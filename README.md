@@ -72,7 +72,7 @@ To update the firmware via JTAG, you need to have:
 - If the programmer driver won't work on your Windows system, please use the following driver: [Link to Terasic.com Wiki](https://www.terasic.com.tw/wiki/Altera_USB_Blaster_Driver_Installation_Instructions).
 
 The update procedure is as follows:
-- Download the latest firmware from the [Github Repository](https://github.com/borti4938/n64rgb_fw4viletim/releases)
+- Download the latest firmware from the [Github Repository](https://github.com/borti4938/n64rgb_fw/releases)
 - Start the _Quartus Prime Programmer_ software
 - Select the programmer adapter under _Hardware Setup..._ if not automatically selected
 - Add the programming file with _Add File..._  
@@ -83,8 +83,6 @@ The update procedure is as follows:
 Please note that the **console must be turned on** in order to provide a reference target voltage for the programming device.
 
 ![](./doc/img/jtag_update.jpg)
-
-Please note that the older N64RGB modding boards, namely N64RGB and N64RGBv2, have programming files supplied in the [discontinued folder](quartus/output_files/discontinued)
 
 ## Developer Information
 
@@ -115,10 +113,13 @@ These are the software requirements:
 ### Build Firmware
 
 If not already done, clone the GIT source.
-Open the [project file](./quartus/n64rgb_viletim.qpf) with Quartus Prime Lite.
+Open the [project file](./quartus/n64rgb_v2_1.qpf) with Quartus Prime Lite.
 Afterwards select the revision you like to work with; a quick switch is in the middle of the control/symbol bar.
 The revision is named after the CPLD you'd like to use / build the firmware for.
 
 There is no need to build any IP-cores as they are not used.
 You can directly _Compile Design_ (e.g. using the shortcut Ctrl. + L).
 If everything went correct the design should compile just fine (Warnings are ok).
+
+If you wish to develop with an older PCB version (N64RGBv2 or N64RGB), you have to change the branch to [discontinue](https://github.com/borti4938/n64rgb_fw/tree/discontinue).
+Project file for these PCBs will then show up.
