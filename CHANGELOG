@@ -2,6 +2,10 @@ Changelog
 
 Last update: March 30th, 2022
 
+v1.02
+=====
+- remove internal reset from video pipeline
+
 v1.01
 =====
 - simplified interlaced detection
