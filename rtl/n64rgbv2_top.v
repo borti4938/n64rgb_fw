@@ -46,6 +46,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 
+`define N0_VIDEO_PIPELINE_RESET
 
 module n64rgbv2_top (
   // N64 Video Input
@@ -117,19 +118,25 @@ input [4:0] dummy_i;
 // start of rtl
 
 wire DRV_RST, n16bit_mode_o, nDeBlur_o;
-wire nRST_int = nRST_io;
+wire nRST_hk, nRST_video;
 wire [1:0] vinfo_pass;
 wire palmode, n64_480i;
 wire [`VDATA_SY_SLICE] vdata_sy_0;
 wire [`VDATA_FU_SLICE] vdata_1;
 
+assign nRST_hk = nRST_io;
+`ifdef N0_VIDEO_PIPELINE_RESET
+  assign nRST_video = 1'b1;
+`else
+  assign nRST_video = nRST_io;
+`endif
 
 // housekeeping
 // ============
 
 n64rgb_hk hk_u(
   .VCLK(VCLK),
-  .nRST(nRST_int),
+  .nRST(nRST_hk),
   .DRV_RST(DRV_RST),
   .CTRL_i(CTRL_i),
   .n64_480i(n64_480i),
@@ -147,7 +154,7 @@ n64rgb_hk hk_u(
 
 n64_vinfo_ext get_vinfo(
   .VCLK(VCLK),
-  .nRST(nRST_int),
+  .nRST(nRST_video),
   .nDSYNC(nDSYNC),
   .Sync_pre(vdata_sy_0),
   .Sync_cur(D_i[3:0]),
@@ -161,7 +168,7 @@ n64_vinfo_ext get_vinfo(
 n64_vdemux video_demux(
   .VCLK(VCLK),
   .nDSYNC(nDSYNC),
-  .nRST(nRST_int),
+  .nRST(nRST_video),
   .D_i(D_i),
   .demuxparams_i({palmode,nDeBlur_o,n16bit_mode_o}),
   .vdata_sy_0_o(vdata_sy_0),
