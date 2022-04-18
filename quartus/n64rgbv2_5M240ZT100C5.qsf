@@ -164,4 +164,4 @@ set_global_assignment -name NUM_PARALLEL_PROCESSORS 2
 set_global_assignment -name ENABLE_OCT_DONE OFF
 set_global_assignment -name STRATIXV_CONFIGURATION_SCHEME "PASSIVE SERIAL"
 set_global_assignment -name USE_CONFIGURATION_DEVICE ON
-set_global_assignment -name SEED 2
+set_global_assignment -name SEED 1

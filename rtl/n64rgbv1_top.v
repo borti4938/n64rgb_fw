@@ -48,6 +48,8 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 
+`define N0_VIDEO_PIPELINE_RESET
+
 module n64rgbv1_top (
   // N64 Video Input
   VCLK,
@@ -113,17 +115,23 @@ output  THS7374_LPF_Bypass_o;       // so simply combine both for same firmware 
 // start of rtl
 
 wire DRV_RST, n16bit_mode_o, nDeBlur_o;
-wire nRST_int = nRST_io;
+wire nRST_hk, nRST_video;
 wire palmode, n64_480i;
 wire [`VDATA_SY_SLICE] vdata_sy;
 
+assign nRST_hk = nRST_io;
+`ifdef N0_VIDEO_PIPELINE_RESET
+  assign nRST_video = 1'b1;
+`else
+  assign nRST_video = nRST_io;
+`endif
 
 // housekeeping
 // ============
 
 n64rgb_hk hk_u(
   .VCLK(VCLK),
-  .nRST(nRST_int),
+  .nRST(nRST_hk),
   .DRV_RST(DRV_RST),
   .CTRL_i(CTRL_i),
   .n64_480i(n64_480i),
@@ -141,7 +149,7 @@ n64rgb_hk hk_u(
 
 n64_vinfo_ext get_vinfo(
   .VCLK(VCLK),
-  .nRST(nRST_int),
+  .nRST(nRST_video),
   .nDSYNC(nDSYNC),
   .Sync_pre(vdata_sy),
   .Sync_cur(D_i[3:0]),
@@ -154,7 +162,7 @@ n64_vinfo_ext get_vinfo(
 
 n64_vdemux video_demux(
   .VCLK(VCLK),
-  .nRST(nRST_int),
+  .nRST(nRST_video),
   .nDSYNC(nDSYNC),
   .D_i(D_i),
   .demuxparams_i({palmode,nDeBlur_o,n16bit_mode_o}),
