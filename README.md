@@ -77,7 +77,7 @@ The update procedure is as follows:
 - Select the programmer adapter under _Hardware Setup..._ if not automatically selected
 - Add the programming file with _Add File..._  
   - Programming file ends with _\*.pof_.
-  - Programming file is named after PCB version and function set (see above)
+  - Programming file is named after PCB version and CPLD, e.g. _n64rgbv2\_1\_5M570ZT100.pof_ stands for N64RGBv2.1 and 5M570ZT100 CPLD
 - Check _Program / Configure_ and _Verify_ for your CPLD devices **CFM** which should appear with the previous step.
 - Click on _Start_ and wait patiently  
 Please note that the **console must be turned on** in order to provide a reference target voltage for the programming device.
