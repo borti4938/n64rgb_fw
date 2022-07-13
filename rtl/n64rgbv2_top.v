@@ -46,7 +46,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 
-`define N0_VIDEO_PIPELINE_RESET
+`define NO_VIDEO_PIPELINE_RESET
 
 module n64rgbv2_top (
   // N64 Video Input
@@ -125,7 +125,7 @@ wire [`VDATA_SY_SLICE] vdata_sy_0;
 wire [`VDATA_FU_SLICE] vdata_1;
 
 assign nRST_hk = nRST_io;
-`ifdef N0_VIDEO_PIPELINE_RESET
+`ifdef NO_VIDEO_PIPELINE_RESET
   assign nRST_video = 1'b1;
 `else
   assign nRST_video = nRST_io;
