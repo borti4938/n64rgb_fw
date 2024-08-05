@@ -62,6 +62,12 @@ Please see the [PCB repository](https://github.com/borti4938/n64rgb_pcb) for mor
 
 ### Firmware Update
 
+**IMPORTANT NOTE**  
+This firmware is not meant for any of Tim Worthingtons N64RGB board.
+I discontinued support for any of his products a few years ago due to reasons.
+Use this firmware only and only for my [N64RGBv2.1](https://github.com/borti4938/n64rgb_pcb) board!
+Thank you.
+
 #### Via JTAG
 
 To update the firmware via JTAG, you need to have:
